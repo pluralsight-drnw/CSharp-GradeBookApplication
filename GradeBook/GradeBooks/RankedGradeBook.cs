@@ -21,15 +21,18 @@ namespace GradeBook.GradeBooks
 
             IEnumerable<Student> students = Students.OrderByDescending(s => s.AverageGrade);
 
-            int fifth = Students.Count / 5;
+            int aCount = (int)Math.Ceiling(Students.Count * 0.2);
+            int bCount = (int)Math.Ceiling(Students.Count * 0.4);
+            int cCount = (int)Math.Ceiling(Students.Count * 0.6);
+            int dCount = (int)Math.Ceiling(Students.Count * 0.8);
 
-            if (averageGrade > students.Take(fifth).Last().AverageGrade)
+            if (averageGrade >= students.Take(aCount).Last().AverageGrade)
                 return 'A';
-            if (averageGrade > students.Take(fifth * 2).Last().AverageGrade)
+            if (averageGrade >= students.Take(bCount).Last().AverageGrade)
                 return 'B';
-            if (averageGrade > students.Take(fifth * 3).Last().AverageGrade)
+            if (averageGrade >= students.Take(cCount).Last().AverageGrade)
                 return 'C';
-            if (averageGrade > students.Take(fifth * 4).Last().AverageGrade)
+            if (averageGrade >= students.Take(dCount).Last().AverageGrade)
                 return 'D';
             return 'F';
         }
